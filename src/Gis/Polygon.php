@@ -116,10 +116,10 @@ class Polygon implements BoundingBoxInterface
      */
     public function getBoundingBox()
     {
-        $bb                = new Rectangle();
-        $bb -> topLeft     = $this -> topLeft;
-        $bb -> bottomRight = $this -> bottomRight;
-        return $bb;
+        return new Rectangle(
+            $this->topLeft,
+            $this->bottomRight
+        );
     }
 
     /**
