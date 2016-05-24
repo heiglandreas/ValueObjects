@@ -1,0 +1,24 @@
+{
+    "name": "org_heigl/valueobjects",
+    "description": "Some Value-Objects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Heigl",
+            "email": "andreas@heigl.org"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^4.8 || ^5.0"
+    },
+    "autoload" : {
+        "psr-4": {
+            "Org_Heigl\\ValueObjects\\": "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4": {
+            "Org_Heigl\\ValueObjectsTests\\" : "tests/"
+        }
+    }
+}
