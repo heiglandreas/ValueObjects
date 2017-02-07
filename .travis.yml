@@ -1,0 +1,25 @@
+language: php
+
+matrix:
+  include:
+    - php: nightly
+    - php: hhvm
+    - php: 7.0
+    - php: 7.1
+  allow_failures:
+    - php: hhvm
+    - php: nightly
+
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer install
+
+script:
+ - phpunit --coverage-text
+
+notifications:
+  email:
+    - andreas@heigl.org

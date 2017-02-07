@@ -8,8 +8,8 @@
             "email": "andreas@heigl.org"
         }
     ],
-    "require": {
-        "phpunit/phpunit": "^4.8 || ^5.0"
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
     },
     "autoload" : {
         "psr-4": {
