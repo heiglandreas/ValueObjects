@@ -74,8 +74,8 @@ class Polygon implements BoundingBoxInterface
     public function __construct()
     {
         $this -> points      = array ();
-        $this -> topLeft     = new Point ();
-        $this -> bottomRight = new Point ();
+        $this -> topLeft     = new Point (0, 0);
+        $this -> bottomRight = new Point (0, 0);
     }
 
     /**
@@ -83,29 +83,33 @@ class Polygon implements BoundingBoxInterface
      *
      * @param \Org_Heigl\ValueObjects\Gis\Point $point The point to add
      *
-     * @return \Org_Heigl\ValueObjects\Gis\Polygon Provides a fluent interface
+     * @return self Provides a fluent interface
      */
     public function addPoint(Point $point)
     {
 
-        $this -> points [] = $point;
-        if ( count ( $this -> points ) == 1 ) {
-            $this -> topLeft     = clone ( $point );
-            $this -> bottomRight = clone ( $point );
-        } else {
-            if ( $point -> LAT > $this -> topLeft -> LAT ) {
-                $this -> topLeft -> LAT = $point -> LAT;
-            }
-            if ( $point -> LON < $this -> topLeft -> LON ) {
-                $this -> topLeft -> LON = $point -> LON;
-            }
-            if ( $point -> LAT < $this -> bottomRight -> LAT ) {
-                $this -> bottomRight -> LAT = $point -> LAT;
-            }
-            if ( $point -> LON > $this -> topLeft -> LON ) {
-                $this -> bottomRight -> LON = $point -> LON;
-            }
+        $this->points[] = $point;
+
+        if (count($this->points) == 1) {
+            $this->topLeft     = clone $point;
+            $this->bottomRight = clone $point;
+
+            return $this;
         }
+
+        if ($point->getY() > $this->topLeft->getY()) {
+            $this->topLeft = $this->topLeft->setY($point->getY());
+        }
+        if ($point->getX() < $this->topLeft->getX()) {
+            $this->topLeft = $this->topLeft->setX($point->getX());
+        }
+        if ($point->getY() < $this->bottomRight->getY()) {
+            $this->bottomRight = $this->bottomRight->setY($point->getY());
+        }
+        if ($point->getX() > $this->bottomRight->getX()) {
+            $this->bottomRight = $this->bottomRight->setX($point->getX());
+        }
+
         return $this;
     }
 
