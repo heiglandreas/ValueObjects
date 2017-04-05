@@ -161,8 +161,8 @@ class Rectangle
             $coords = array(0, 0, 0, 0);
         }
 
-        $topLeft = new Point($coords[2], $coords[1]);
-        $bottomRight = new Point($coords[0], $coords[3]);
+        $topLeft = new Point($coords[0], $coords[3]);
+        $bottomRight = new Point($coords[2], $coords[1]);
 
         return new self($topLeft, $bottomRight);
     }
